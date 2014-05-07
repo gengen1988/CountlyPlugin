@@ -1,0 +1,4 @@
+CountlyPlugin
+=============
+
+Countly Cordova Plugin
