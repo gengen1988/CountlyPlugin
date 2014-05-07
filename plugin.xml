@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.eteng.mobile.countly"
+    version="0.0.1">
+
+    <name>Countly</name>
+    <description>Countly Cordova Plugin</description>
+    <license>MIT</license>
+    <keywords>countly,analytics</keywords>
+    <repo></repo>
+    <issue></issue>
+
+    <!-- android -->
+    <platform name="android">
+        <preference name="KEY" />
+        <preference name="SERVER" />
+        
+        <js-module src="www/countly.js" name="countly">
+            <clobbers target="countly" />
+        </js-module>
+        
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Countly">
+                <param name="android-package" value="com.eteng.mobile.countly.CountlyPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        
+        <source-file src="lib/ly-count-sdk-android-13.10.jar" target-dir="libs" />
+        <source-file src="src/android/CountlyPlugin.java" target-dir="src/com/eteng/mobile/countly" />
+        <source-file src="src/android/TrackTask.java" target-dir="src/com/eteng/mobile/countly" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+	        <service android:name="org.openudid.OpenUDID_service">
+	            <intent-filter>
+	                <action android:name="org.openudid.GETUDID" />
+	            </intent-filter>
+	        </service>
+	        <meta-data android:name="countly_app_key" android:value="$KEY" />
+	        <meta-data android:name="countly_server" android:value="$SERVER" />
+        </config-file>
+
+    </platform>
+    
+</plugin>
